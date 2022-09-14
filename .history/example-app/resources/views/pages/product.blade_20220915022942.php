@@ -126,7 +126,6 @@
                       @include('pages.model.delete')
                     </tr>
                     @endforeach
-                    @endif
                   </tbody>
                 </table>
                 

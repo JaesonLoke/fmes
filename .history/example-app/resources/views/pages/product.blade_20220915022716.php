@@ -126,7 +126,6 @@
                       @include('pages.model.delete')
                     </tr>
                     @endforeach
-                    @endif
                   </tbody>
                 </table>
                 
@@ -134,6 +133,8 @@
                 {!! $products->links() !!}
                 </div>
               </div>
+            
+              
           </div>
         </div>
       </div>

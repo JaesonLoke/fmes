@@ -83,10 +83,9 @@
                     </tr>
                   </thead>
                   <tbody class="list" >
-                    @if (count($products) == 0)
+                    @if (count($row) > 0)
                       <tr>
-                        <td colspan="5" class="text-center">No records found.</td>
-                      </tr>
+                        <td colspan="5"
                     @else
 
                     @foreach($products as $row)
@@ -126,14 +125,15 @@
                       @include('pages.model.delete')
                     </tr>
                     @endforeach
-                    @endif
                   </tbody>
                 </table>
-                
+                @endif
                 <div style="float:right; margin-right:15px; margin-bottom:20px">
                 {!! $products->links() !!}
                 </div>
               </div>
+            
+              
           </div>
         </div>
       </div>
