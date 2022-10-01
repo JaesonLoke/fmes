@@ -13,17 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('workorders', function (Blueprint $table) {
+        Schema::create('productions', function (Blueprint $table) {
             $table->id();
-            $table->string('workorder_name');
-            $table->foreignId('production_id');
+            $table->string('production_line');
             $table->string('status')->default('new');
-            $table->integer('planner_id');
-            $table->date('due_date');
             $table->integer('completion')->default('0');
-            $table->longtext('planner_remark')->nullable()->default(NULL);
             $table->timestamps();
-            $table->foreign('production_id')->references('id')->on('productions')->onDelete('cascade');
         });
     }
 
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('production');
     }
 };

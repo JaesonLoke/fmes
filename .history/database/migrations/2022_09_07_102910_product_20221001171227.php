@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('workorders', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('workorder_name');
-            $table->foreignId('production_id');
+            $table->string('product_name');
+            $table->foreignId('workorder_id');
             $table->string('status')->default('new');
-            $table->integer('planner_id');
-            $table->date('due_date');
+            $table->integer('operator_id');
+            $table->integer('quantity');
             $table->integer('completion')->default('0');
+            $table->date('due_date');
             $table->longtext('planner_remark')->nullable()->default(NULL);
+            $table->longtext('operator_remark')->nullable()->default(NULL);
             $table->timestamps();
-            $table->foreign('production_id')->references('id')->on('productions')->onDelete('cascade');
         });
     }
 

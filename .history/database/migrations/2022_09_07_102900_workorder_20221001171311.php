@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('completion')->default('0');
             $table->longtext('planner_remark')->nullable()->default(NULL);
             $table->timestamps();
-            $table->foreign('production_id')->references('id')->on('productions')->onDelete('cascade');
+            $table->foreign('production_id')->references('id')->on('workorders')->onDelete('cascade');
         });
     }
 

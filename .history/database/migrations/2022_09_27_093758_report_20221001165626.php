@@ -17,13 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('ProductOrWork');
-            $table->foreignId('ProductID')->nullable();
-            $table->foreignId('WorkID');
-            $table->foreignId('ReporterID');
+            $table->string('ProductID')->nullable();
+            $table->string('WorkID');
+            $table->integer('ReporterID');
             $table->longtext('detail');
             $table->timestamps();
             $table->foreign('ProductID')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('WorkID')->references('id')->on('workorders')->onDelete('cascade');
         });
     }
 
