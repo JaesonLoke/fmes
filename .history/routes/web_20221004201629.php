@@ -22,9 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
 
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth','isAdmin']], function () {
+Route::group(['middleware' => 'isAdmin'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
@@ -73,25 +75,23 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 	Route::delete('destroyproduction/{production}', 'App\Http\Controllers\ProductionRecController@destroy')->name('production.destroy');
 	Route::post('storeproduction', 'App\Http\Controllers\ProductionRecController@store')->name('production.store');
 
+	//operator view
+	Route::get('operator.index', function () {return view('operatorwelcome');})->name('operator.index');
 	
+	//operator production
+	Route::get('operator.production', 'App\Http\Controllers\OProductionRecController@index')->name('operator.production');
+	
+	//operator workorder
+	Route::get('operator.workorder', 'App\Http\Controllers\OWorkRecController@index')->name('operator.workorder');
+	Route::delete('operator.stopwork/{work}', 'App\Http\Controllers\OWorkRecController@stop')->name('operator.stopwork');
+	Route::get('operator.startwork/{work}', 'App\Http\Controllers\OWorkRecController@start')->name('operator.startwork');
+
+	//operator product
+	Route::get('operator.product', 'App\Http\Controllers\OProductRecController@index')->name('operator.product');
+	Route::get('operator.startproduct/{product}', 'App\Http\Controllers\OProductRecController@start')->name('operator.startproduct');
+	Route::delete('operator.stopproduct/{product}', 'App\Http\Controllers\OProductRecController@stop')->name('operator.stopproduct');
+	Route::post('operator.endproduct/{product}', 'App\Http\Controllers\OProductRecController@end')->name('operator.endproduct');
 
 
 });
 
-
-//operator view
-Route::get('operator.index', function () {return view('operatorwelcome');})->name('operator.index');
-	
-//operator production
-Route::get('operator.production', 'App\Http\Controllers\OProductionRecController@index')->name('operator.production');
-
-//operator workorder
-Route::get('operator.workorder', 'App\Http\Controllers\OWorkRecController@index')->name('operator.workorder');
-Route::delete('operator.stopwork/{work}', 'App\Http\Controllers\OWorkRecController@stop')->name('operator.stopwork');
-Route::get('operator.startwork/{work}', 'App\Http\Controllers\OWorkRecController@start')->name('operator.startwork');
-
-//operator product
-Route::get('operator.product', 'App\Http\Controllers\OProductRecController@index')->name('operator.product');
-Route::get('operator.startproduct/{product}', 'App\Http\Controllers\OProductRecController@start')->name('operator.startproduct');
-Route::delete('operator.stopproduct/{product}', 'App\Http\Controllers\OProductRecController@stop')->name('operator.stopproduct');
-Route::post('operator.endproduct/{product}', 'App\Http\Controllers\OProductRecController@end')->name('operator.endproduct');

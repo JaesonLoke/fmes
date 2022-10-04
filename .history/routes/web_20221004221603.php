@@ -78,20 +78,3 @@ Route::group(['middleware' => ['auth','isAdmin']], function () {
 
 });
 
-
-//operator view
-Route::get('operator.index', function () {return view('operatorwelcome');})->name('operator.index');
-	
-//operator production
-Route::get('operator.production', 'App\Http\Controllers\OProductionRecController@index')->name('operator.production');
-
-//operator workorder
-Route::get('operator.workorder', 'App\Http\Controllers\OWorkRecController@index')->name('operator.workorder');
-Route::delete('operator.stopwork/{work}', 'App\Http\Controllers\OWorkRecController@stop')->name('operator.stopwork');
-Route::get('operator.startwork/{work}', 'App\Http\Controllers\OWorkRecController@start')->name('operator.startwork');
-
-//operator product
-Route::get('operator.product', 'App\Http\Controllers\OProductRecController@index')->name('operator.product');
-Route::get('operator.startproduct/{product}', 'App\Http\Controllers\OProductRecController@start')->name('operator.startproduct');
-Route::delete('operator.stopproduct/{product}', 'App\Http\Controllers\OProductRecController@stop')->name('operator.stopproduct');
-Route::post('operator.endproduct/{product}', 'App\Http\Controllers\OProductRecController@end')->name('operator.endproduct');
