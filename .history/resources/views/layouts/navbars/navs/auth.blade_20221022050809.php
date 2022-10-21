@@ -21,37 +21,30 @@
                 @if (count($notifications) == 0)
                         <h4 colspan="5" class="text-center">No records found.</h4>
                     @else
-
-                    @foreach($notifications as $row)
                 <a href="#!" class="list-group-item list-group-item-action">
                   <div class="row align-items-center">
                     <div class="col-auto">
                       <!-- Avatar -->
-                      @if ($row->staff_id == null)
-                      <img alt="Image placeholder" src="../assets/img/theme/team-2.jpg" class="avatar rounded-circle">
-                      @else
-                      <img src="{{route('user.fetch',$row->staff_id)}}" class="avatar rounded-circle">
-                      @endif
+                      <img alt="Image placeholder" src="../assets/img/theme/team-1.jpg" class="avatar rounded-circle">
                     </div>
                     <div class="col ml--2">
                       <div class="d-flex justify-content-between align-items-center">
                         <div>
-                          <h4 class="mb-0 text-sm">{{DB::table('users')->where('id',$row->staff_id)->value('fullname')}}</h4>
+                          <h4 class="mb-0 text-sm">John Snow</h4>
                         </div>
                         <div class="text-right text-muted">
-                          <small>{{carbon\Carbon::parse($row->created_at)->diffInhours(carbon\Carbon::now())}} Hours Ago</small>
+                          <small>2 hrs ago</small>
                         </div>
                       </div>
-                      <p class="text-sm mb-0">{{$row->detail}}</p>
+                      <p class="text-sm mb-0">{{$notifications->detail}}</p>
                     </div>
                   </div>
                 </a>
-                @endforeach
+                @endif
               </div>
               <!-- View all -->
-              <div class="dropdown-item text-center text-primary font-weight-bold py-3">{!! $notifications->appends(request()->input())->links() !!}</div>
+              <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
             </div>
-            @endif
           </li>
 
         <!-- User -->

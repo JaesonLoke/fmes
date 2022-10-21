@@ -77,6 +77,6 @@ class HomeController extends Controller
         $linelabels = $linecharts->keys();
         $linedata = $linecharts->values();
 
-        return view('dashboard',compact('notifications','products','reports','labels', 'data','linelabels','linedata','avaibility','performance','quality','oee'))->with('i',(request()->input('page',1)-1)*5);
+        return view('dashboard',compact('products','reports','labels', 'data','linelabels','linedata','avaibility','performance','quality','oee'))->with('i',(request()->input('page',1)-1)*5);
     }
 }

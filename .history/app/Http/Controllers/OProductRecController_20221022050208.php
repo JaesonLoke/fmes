@@ -19,7 +19,7 @@ class OProductRecController extends Controller
      */
     public function index()
     {
-        $notifications = Notification::latest()->Paginate(5);
+        $notifications = Notification::latest(5);
 
         $products = Product::latest()->where('workorder_id', $_GET['id'])->Where('status', '!=', 'completed')->Paginate(5);
         return view('pages.operator.operatorproduct',compact('products','notifications'))->with('i',(request()->input('page',1)-1)*5);

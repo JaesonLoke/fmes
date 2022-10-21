@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('inventory_id')->nullable();
             $table->integer('quantity')->nullable();
             $table->string('product_id')->nullable();
-            $table->string('staff_id');
+            $table->string('staffid');
             $table->longtext('detail');
             $table->timestamps();
         });

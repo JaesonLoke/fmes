@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Report;
 use App\Models\Inventory;
-use App\Models\Notification;
+use App\Models\;
 use DB;
 use Carbon\Carbon;
 
@@ -31,7 +31,7 @@ class HomeController extends Controller
         
         $reports = Report::latest()->Paginate(5);
         $products = Product::latest()->Paginate(5);
-        $notifications = Notification::latest()->Paginate(5);
+        $products = Product::latest()->Paginate(5);
 
         //avability
         $avaibilitythismonth = Product::where('status','Running')->count();
@@ -77,6 +77,6 @@ class HomeController extends Controller
         $linelabels = $linecharts->keys();
         $linedata = $linecharts->values();
 
-        return view('dashboard',compact('notifications','products','reports','labels', 'data','linelabels','linedata','avaibility','performance','quality','oee'))->with('i',(request()->input('page',1)-1)*5);
+        return view('dashboard',compact('products','reports','labels', 'data','linelabels','linedata','avaibility','performance','quality','oee'))->with('i',(request()->input('page',1)-1)*5);
     }
 }

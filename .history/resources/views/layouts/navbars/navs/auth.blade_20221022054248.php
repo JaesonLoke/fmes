@@ -28,7 +28,7 @@
                     <div class="col-auto">
                       <!-- Avatar -->
                       @if ($row->staff_id == null)
-                      <img alt="Image placeholder" src="../assets/img/theme/team-2.jpg" class="avatar rounded-circle">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-1.jpg" class="avatar rounded-circle">
                       @else
                       <img src="{{route('user.fetch',$row->staff_id)}}" class="avatar rounded-circle">
                       @endif

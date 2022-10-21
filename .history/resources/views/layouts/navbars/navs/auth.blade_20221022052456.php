@@ -27,19 +27,15 @@
                   <div class="row align-items-center">
                     <div class="col-auto">
                       <!-- Avatar -->
-                      @if ($row->staff_id == null)
-                      <img alt="Image placeholder" src="../assets/img/theme/team-2.jpg" class="avatar rounded-circle">
-                      @else
-                      <img src="{{route('user.fetch',$row->staff_id)}}" class="avatar rounded-circle">
-                      @endif
+                      <img alt="Image placeholder" src="../assets/img/theme/team-1.jpg" class="avatar rounded-circle">
                     </div>
                     <div class="col ml--2">
                       <div class="d-flex justify-content-between align-items-center">
                         <div>
-                          <h4 class="mb-0 text-sm">{{DB::table('users')->where('id',$row->staff_id)->value('fullname')}}</h4>
+                          <h4 class="mb-0 text-sm">John Snow</h4>
                         </div>
                         <div class="text-right text-muted">
-                          <small>{{carbon\Carbon::parse($row->created_at)->diffInhours(carbon\Carbon::now())}} Hours Ago</small>
+                          <small>{{DIFFindays(carbon\Carbon::now(),STR_TO_DATE($row->created_at, '%Y-%m-%d'))}}</small>
                         </div>
                       </div>
                       <p class="text-sm mb-0">{{$row->detail}}</p>
@@ -49,7 +45,7 @@
                 @endforeach
               </div>
               <!-- View all -->
-              <div class="dropdown-item text-center text-primary font-weight-bold py-3">{!! $notifications->appends(request()->input())->links() !!}</div>
+              <div class="dropdown-item text-center text-primary font-weight-bold py-3">{!! $products->appends(request()->input())->links() !!}</div>
             </div>
             @endif
           </li>
